@@ -9,10 +9,12 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build -t rmeiradev/php7.4-alpine-fpm-nginx . && docker push rmeiradev/php7.4-alpine-fpm-nginx
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: rmeiradev/php7.4-fpm-alpine-nginx
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
